@@ -10,6 +10,7 @@ from pythia.tasks.features_dataset import FeaturesDataset
 from pythia.tasks.image_database import ImageDatabase
 from pythia.utils.distributed_utils import is_main_process
 from pythia.utils.general import get_pythia_root
+from pythia.utils.text_utils import generate_ngrams_range
 
 
 class VQA2Dataset(BaseDataset):
@@ -136,10 +137,16 @@ class VQA2Dataset(BaseDataset):
     def add_ocr_details(self, sample_info, sample):
         if self.use_ocr:
             # Preprocess OCR tokens
+
+            sample_info["ocr_tokens"] = generate_ngrams_range(sample_info["ocr_tokens"])
+
             ocr_tokens = [
                 self.ocr_token_processor({"text": token})["text"]
                 for token in sample_info["ocr_tokens"]
             ]
+
+
+
             # Get embeddings for tokens
             context = self.context_processor({"tokens": ocr_tokens})
             sample.context = context["text"]
