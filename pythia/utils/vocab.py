@@ -408,7 +408,7 @@ class ModelVocab(BaseVocab):
             self._load_fasttext_model(model_file)
 
     def _load_fasttext_model(self, model_file):
-        from fastText import load_model
+        from fasttext import load_model
         from pythia.common.registry import registry
 
         pythia_root = get_pythia_root()

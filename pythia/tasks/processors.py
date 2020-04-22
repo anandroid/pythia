@@ -457,7 +457,7 @@ class FastTextProcessor(VocabProcessor):
         return model_file_path
 
     def _load_fasttext_model(self, model_file):
-        from fastText import load_model
+        from fasttext import load_model
 
         is_main_process = self._is_main_process()
 
