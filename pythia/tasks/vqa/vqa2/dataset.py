@@ -136,10 +136,17 @@ class VQA2Dataset(BaseDataset):
 
     def add_ocr_details(self, sample_info, sample):
         if self.use_ocr:
+
             # Preprocess OCR tokens
+            file_name = sample_info["image_id"]
+            file_base_name = os.path.basename(file_name)
+            file_base_name = file_base_name.split(".")[0]
+            info_file_base_name = file_base_name + "_info.npy"
+            file_base_name = file_base_name + ".npy"
 
             print("Feature extractor")
-            print(FeatureExtractor.get_detectron_features(sample_info["image_id"]))
+            print(file_base_name)
+            print(FeatureExtractor.get_detectron_features([file_base_name]))
 
 
             ocr_token_list = []
