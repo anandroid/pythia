@@ -77,7 +77,10 @@ class BaseDataset(Dataset):
         sample.dataset_type = self._dataset_type
         sample.dataset_name = self._name
 
+        print("Sample")
         print(sample)
+        print(sample.keys())
+        print("###")
         return sample
 
     def prepare_batch(self, batch):
