@@ -76,6 +76,8 @@ class BaseDataset(Dataset):
         sample = self.get_item(idx)
         sample.dataset_type = self._dataset_type
         sample.dataset_name = self._name
+
+        print(sample)
         return sample
 
     def prepare_batch(self, batch):
