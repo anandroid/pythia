@@ -138,7 +138,7 @@ class VQA2Dataset(BaseDataset):
         if self.use_ocr:
 
             # Preprocess OCR tokens
-            '''
+
             file_name = sample_info["image_id"]
             file_base_name = os.path.join("data/open_images/detectron_fix_100/fc6/train",file_name)
             file_base_name = file_base_name.split(".")[0]
@@ -148,7 +148,7 @@ class VQA2Dataset(BaseDataset):
             print("Feature extractor")
             print(file_base_name)
             print(FeatureExtractor().get_detectron_features_thresh([file_base_name],"fc6",0))
-            '''
+
 
 
             ocr_token_list = []
