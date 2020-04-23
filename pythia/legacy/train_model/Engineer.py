@@ -153,7 +153,9 @@ def save_a_snapshot(
             if os.path.exists(best_model_snapshot_file):
                 os.remove(best_model_snapshot_file)
             os.link(model_snapshot_file, best_model_snapshot_file)
-
+    import gc
+    gc.collect()
+    torch.cuda.empty_cache()
     return best_val_accuracy, best_epoch, best_iter
 
 
