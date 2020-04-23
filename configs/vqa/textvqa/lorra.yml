@@ -6,7 +6,7 @@ task_attributes:
     dataset_attributes:
       textvqa:
         use_ocr: true
-        use_ocr_info:true
+        use_ocr_info: true
         processors:
           answer_processor:
             type: soft_copy_answer
