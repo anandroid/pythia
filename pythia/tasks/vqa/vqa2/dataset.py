@@ -142,7 +142,7 @@ class VQA2Dataset(BaseDataset):
             print(type(sample_info["ocr_tokens"]))
             print(sample_info.keys())
 
-            sample_info["ocr_tokens"] = generate_ngrams_range(sample_info["ocr_tokens"])
+            sample_info["ocr_tokens"] = list(generate_ngrams_range(sample_info["ocr_tokens"]))
 
             print("After  ------")
 
