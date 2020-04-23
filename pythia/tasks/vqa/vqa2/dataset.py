@@ -11,7 +11,7 @@ from pythia.tasks.image_database import ImageDatabase
 from pythia.utils.distributed_utils import is_main_process
 from pythia.utils.general import get_pythia_root
 from pythia.utils.text_utils import generate_ngrams_range
-
+from pythia.scripts.features.extract_features_vmb import FeatureExtractor
 
 class VQA2Dataset(BaseDataset):
     def __init__(self, dataset_type, imdb_file_index, config, *args, **kwargs):
@@ -137,6 +137,9 @@ class VQA2Dataset(BaseDataset):
     def add_ocr_details(self, sample_info, sample):
         if self.use_ocr:
             # Preprocess OCR tokens
+
+            print("Feature extractor")
+            print(FeatureExtractor.get_detectron_features(sample_info["image_id"]))
 
 
             ocr_token_list = []
