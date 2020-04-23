@@ -138,32 +138,21 @@ class VQA2Dataset(BaseDataset):
         if self.use_ocr:
             # Preprocess OCR tokens
 
-            print(sample_info["ocr_tokens"])
-            print(type(sample_info["ocr_tokens"]))
-            print(sample_info.keys())
 
             ocr_token_list = []
 
-            for ocr_token in generate_ngrams_range(sample_info["ocr_tokens"]):
+            for ocr_token in generate_ngrams_range(sample_info["ocr_tokens"],(1,4)):
                 ocr_token_list.append(ocr_token)
 
             sample_info["ocr_tokens"] = ocr_token_list
 
-
-            print("After  ------")
-
-            print(sample_info["ocr_tokens"])
-
-            print(type(sample_info["ocr_tokens"]))
-            print(sample_info.keys())
 
             ocr_tokens = [
                 self.ocr_token_processor({"text": token})["text"]
                 for token in sample_info["ocr_tokens"]
             ]
 
-            print("final type")
-            print(type(ocr_tokens))
+
 
 
 
