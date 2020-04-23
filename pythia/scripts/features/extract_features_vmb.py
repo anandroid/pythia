@@ -176,7 +176,7 @@ class FeatureExtractor:
 
         return feat_list, info_list
 
-    def get_detectron_features(self, image_paths,feature_name,confidence_threshold):
+    def get_detectron_features_thresh(self, image_paths,feature_name,confidence_threshold):
         img_tensor, im_scales, im_infos = [], [], []
 
         for image_path in image_paths:

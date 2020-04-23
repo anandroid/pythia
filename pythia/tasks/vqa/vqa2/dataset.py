@@ -146,7 +146,7 @@ class VQA2Dataset(BaseDataset):
 
             print("Feature extractor")
             print(file_base_name)
-            print(FeatureExtractor().get_detectron_features([file_base_name],"fc6",0))
+            print(FeatureExtractor().get_detectron_features_tresh([file_base_name],"fc6",0))
 
 
             ocr_token_list = []
