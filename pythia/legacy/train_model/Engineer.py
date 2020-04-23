@@ -91,6 +91,12 @@ def save_a_report(
     writer.add_scalar("val_loss", val_loss.data[0], i_iter)
     for name, param in myModel.named_parameters():
         writer.add_histogram(name, param.clone().cpu().data.numpy(), i_iter)
+    '''
+    clearing cache of cuda
+    '''
+    import gc
+    gc.collect()
+    torch.cuda.empty_cache()
 
 
 def save_a_snapshot(
