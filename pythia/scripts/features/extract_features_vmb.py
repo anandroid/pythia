@@ -176,6 +176,31 @@ class FeatureExtractor:
 
         return feat_list, info_list
 
+    def get_detectron_features(self, image_paths,feature_name,confidence_threshold):
+        img_tensor, im_scales, im_infos = [], [], []
+
+        for image_path in image_paths:
+            im, im_scale, im_info = self._image_transform(image_path)
+            img_tensor.append(im)
+            im_scales.append(im_scale)
+            im_infos.append(im_info)
+
+        # Image dimensions should be divisible by 32, to allow convolutions
+        # in detector to work
+        current_img_list = to_image_list(img_tensor, size_divisible=32)
+        current_img_list = current_img_list.to("cuda")
+
+        with torch.no_grad():
+            output = self.detection_model(current_img_list)
+
+        feat_list = self._process_feature_extraction(
+            output, im_scales, im_infos, feature_name,
+            confidence_threshold
+        )
+
+        return feat_list
+
+
     def get_detectron_features(self, image_paths):
         img_tensor, im_scales, im_infos = [], [], []
 
