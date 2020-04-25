@@ -159,7 +159,8 @@ class VQA2Dataset(BaseDataset):
 
 
             file_name = sample_info["image_id"]
-            file_base_name = os.path.join(home+"/textvqa/content/pythia/data/open_images/detectron_fix_100/fc6/train",file_name)
+            #file_base_name = os.path.join(home+"/textvqa/content/pythia/data/open_images/detectron_fix_100/fc6/train",file_name)
+            file_base_name = os.path.join(home+"/textvqa/content/","fruits.jpg")
             file_base_name = file_base_name.split(".")[0]
             info_file_base_name = file_base_name + "_info.npy"
             file_base_name = file_base_name + ".npy"
