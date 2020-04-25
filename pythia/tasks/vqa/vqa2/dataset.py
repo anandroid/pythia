@@ -248,7 +248,7 @@ class VQA2Dataset(BaseDataset):
         cfg.freeze()
 
         model = build_detection_model(cfg)
-        checkpoint = torch.load('./model_data/detectron_model.pth',
+        checkpoint = torch.load('../model_data/detectron_model.pth',
                                 map_location=torch.device("cpu"))
 
         load_state_dict(model, checkpoint.pop("model"))
