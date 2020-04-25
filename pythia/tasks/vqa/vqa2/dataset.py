@@ -35,6 +35,8 @@ class VQA2Dataset(BaseDataset):
         self.use_ocr = self.config.use_ocr
         self.use_ocr_info = self.config.use_ocr_info
 
+
+
         self._use_features = False
         if hasattr(self.config, "image_features"):
             self._use_features = True
@@ -55,6 +57,8 @@ class VQA2Dataset(BaseDataset):
                 imdb=self.imdb,
                 return_info=self._return_info,
             )
+
+            print("using image features")
 
     def _get_absolute_path(self, paths):
         if isinstance(paths, list):
