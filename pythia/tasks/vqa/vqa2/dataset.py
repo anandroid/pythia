@@ -163,7 +163,7 @@ class VQA2Dataset(BaseDataset):
             file_base_name = os.path.join(home+"/textvqa/content/","fruits.jpg")
             file_base_name = file_base_name.split(".")[0]
             info_file_base_name = file_base_name + "_info.npy"
-            file_base_name = file_base_name + ".npy"
+            #file_base_name = file_base_name + ".npy"
             '''
 
             print("Feature extractor")
