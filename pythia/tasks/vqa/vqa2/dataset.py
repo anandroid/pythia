@@ -244,11 +244,11 @@ class VQA2Dataset(BaseDataset):
 
     def _build_detection_model(self):
 
-        cfg.merge_from_file('../model_data/detectron_model.yaml')
+        cfg.merge_from_file('../../../../model_data/detectron_model.yaml')
         cfg.freeze()
 
         model = build_detection_model(cfg)
-        checkpoint = torch.load('../model_data/detectron_model.pth',
+        checkpoint = torch.load('../../../../model_data/detectron_model.pth',
                                 map_location=torch.device("cpu"))
 
         load_state_dict(model, checkpoint.pop("model"))
