@@ -136,6 +136,8 @@ class VQA2Dataset(BaseDataset):
 
         if self._use_features is True:
             features = self.features_db[idx]
+            print("image features")
+            print(features)
             current_sample.update(features)
 
         # Add details for OCR like OCR bbox, vectors, tokens here
@@ -163,8 +165,8 @@ class VQA2Dataset(BaseDataset):
             print(FeatureExtractor().get_detectron_features_thresh([file_base_name],"fc6",0))
             '''
 
-            print("Getting detectron features")
-            print(self.get_detectron_features(file_base_name))
+           # print("Getting detectron features")
+            #print(self.get_detectron_features(file_base_name))
 
 
 
