@@ -20,6 +20,8 @@ from maskrcnn_benchmark.utils.model_serialization import load_state_dict
 from PIL import Image
 import cv2
 import numpy as np
+from os.path import expanduser
+
 
 class VQA2Dataset(BaseDataset):
     def __init__(self, dataset_type, imdb_file_index, config, *args, **kwargs):
@@ -153,8 +155,11 @@ class VQA2Dataset(BaseDataset):
 
             # Preprocess OCR tokens
 
+            home = expanduser("~")
+
+
             file_name = sample_info["image_id"]
-            file_base_name = os.path.join("/home/anandkumar/textvqa/content/pythia/data/open_images/detectron_fix_100/fc6/train",file_name)
+            file_base_name = os.path.join(home+"/textvqa/content/pythia/data/open_images/detectron_fix_100/fc6/train",file_name)
             file_base_name = file_base_name.split(".")[0]
             info_file_base_name = file_base_name + "_info.npy"
             file_base_name = file_base_name + ".npy"
