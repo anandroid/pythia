@@ -244,7 +244,7 @@ class VQA2Dataset(BaseDataset):
 
     def _build_detection_model(self):
 
-        cfg.merge_from_file('./model_data/detectron_model.yaml')
+        cfg.merge_from_file('../model_data/detectron_model.yaml')
         cfg.freeze()
 
         model = build_detection_model(cfg)
