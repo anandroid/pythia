@@ -18,9 +18,18 @@ from maskrcnn_benchmark.modeling.detector import build_detection_model
 from maskrcnn_benchmark.structures.image_list import to_image_list
 from maskrcnn_benchmark.utils.model_serialization import load_state_dict
 from PIL import Image
+
 import cv2
 import numpy as np
 from os.path import expanduser
+import sys
+
+sys.path.append('/home/anandkumar/textvqa/content/detectron2')
+
+from detectron2.engine import DefaultPredictor
+from detectron2.config import get_cfg
+from detectron2.utils.visualizer import Visualizer
+from detectron2.data import MetadataCatalog
 
 
 class VQA2Dataset(BaseDataset):
@@ -173,7 +182,8 @@ class VQA2Dataset(BaseDataset):
             '''
 
            # print("Getting detectron features")
-            print(self.get_detectron_features(file_base_name))
+            #print(self.get_detectron_features(file_base_name))
+            print(self.get_detectron2_prediction(cv2.imread(file_base_name)))
 
 
 
@@ -336,4 +346,18 @@ class VQA2Dataset(BaseDataset):
             keep_boxes = torch.argsort(max_conf, descending=True)[:100]
             feat_list.append(feats[i][keep_boxes])
         return feat_list
+
+    def get_detectron2_prediction(self,im):
+        cfg = get_cfg()
+        cfg.merge_from_file("/home/anandkumar/textvqa/content/detectron2/configs/COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml")
+        cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  # set threshold for this model
+        cfg.MODEL.WEIGHTS = "detectron2://COCO-Detection/faster_rcnn_R_101_FPN_3x/137851257/model_final_f6e8b1.pkl"
+        predictor = DefaultPredictor(cfg)
+
+        # Make prediction
+        outputs = predictor(im)
+
+        return outputs
+
+
 
