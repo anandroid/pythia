@@ -31,6 +31,8 @@ from detectron2.config import get_cfg
 from detectron2.utils.visualizer import Visualizer
 from detectron2.data import MetadataCatalog
 
+import matplotlib.pyplot as plt
+import matplotlib.pylab as pylab
 
 class VQA2Dataset(BaseDataset):
     def __init__(self, dataset_type, imdb_file_index, config, *args, **kwargs):
@@ -149,6 +151,8 @@ class VQA2Dataset(BaseDataset):
             features = self.features_db[idx]
             print("image features")
             print(features["image_feature_0"])
+            plt.imshow(features[:, :, [2, 1, 0]])
+            plt.axis("off")
             current_sample.update(features)
 
         # Add details for OCR like OCR bbox, vectors, tokens here
