@@ -308,8 +308,14 @@ class VQA2Dataset(BaseDataset):
                                     feat_name='fc6',
                                     conf_thresh=0.2):
 
+        predictions = [o.to(self.cpu_device) for o in output]
+
+
+        # always single image is passed at a time
+        prediction = predictions[0]
         print("labels ")
-        print(output[0]["scores"])
+        print(predictions.get_field("labels").tolist())
+
         batch_size = len(output[0]["proposals"])
         n_boxes_per_image = [len(_) for _ in output[0]["proposals"]]
         score_list = output[0]["scores"].split(n_boxes_per_image)
