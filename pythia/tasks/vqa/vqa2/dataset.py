@@ -274,8 +274,6 @@ class VQA2Dataset(BaseDataset):
         current_img_list = current_img_list.to('cuda')
         with torch.no_grad():
             output = self.detection_model(current_img_list)
-        print("output:")
-        print(output)
         feat_list = self._process_feature_extraction(output, im_scales,
                                                      'fc6', 0.2)
         return feat_list[0]
@@ -309,6 +307,9 @@ class VQA2Dataset(BaseDataset):
                                     im_scales,
                                     feat_name='fc6',
                                     conf_thresh=0.2):
+
+        print("labels ")
+        print(output[0]["scores"])
         batch_size = len(output[0]["proposals"])
         n_boxes_per_image = [len(_) for _ in output[0]["proposals"]]
         score_list = output[0]["scores"].split(n_boxes_per_image)
