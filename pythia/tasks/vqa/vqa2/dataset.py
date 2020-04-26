@@ -147,8 +147,8 @@ class VQA2Dataset(BaseDataset):
 
         if self._use_features is True:
             features = self.features_db[idx]
-            #print("image features")
-            #print(features)
+            print("image features")
+            print(features)
             current_sample.update(features)
 
         # Add details for OCR like OCR bbox, vectors, tokens here
@@ -379,15 +379,22 @@ class VQA2Dataset(BaseDataset):
         Returns:
             list[str] or None
         """
+        labels_treshold=[]
         labels = None
         if classes is not None and class_names is not None and len(class_names) > 1:
             labels = [class_names[i] for i in classes]
         if scores is not None:
             if labels is None:
+
                 labels = ["{:.0f}%".format(s * 100) for s in scores]
             else:
-                labels = ["{} {:.0f}%".format(l, s * 100) for l, s in zip(labels, scores)]
-        return labels
+                for i in len(range(scores)):
+                    if scores[i]>80:
+                        labels_treshold.append(classes[i])
+
+
+
+        return labels_treshold
 
 
 
