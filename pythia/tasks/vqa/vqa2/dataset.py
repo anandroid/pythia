@@ -357,7 +357,37 @@ class VQA2Dataset(BaseDataset):
         # Make prediction
         outputs = predictor(im)
 
-        return outputs["instances"].to("cpu").get('pred_classes').tolist()
+        predictions = outputs["instances"].to("cpu")
+
+        boxes = predictions.pred_boxes if predictions.has("pred_boxes") else None
+        scores = predictions.scores if predictions.has("scores") else None
+        classes = predictions.pred_classes if predictions.has("pred_classes") else None
+
+        metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
+
+
+
+        return self._create_text_labels(classes,scores,metadata.get("thing_classes", None))
+
+    def _create_text_labels(classes, scores, class_names):
+        """
+        Args:
+            classes (list[int] or None):
+            scores (list[float] or None):
+            class_names (list[str] or None):
+
+        Returns:
+            list[str] or None
+        """
+        labels = None
+        if classes is not None and class_names is not None and len(class_names) > 1:
+            labels = [class_names[i] for i in classes]
+        if scores is not None:
+            if labels is None:
+                labels = ["{:.0f}%".format(s * 100) for s in scores]
+            else:
+                labels = ["{} {:.0f}%".format(l, s * 100) for l, s in zip(labels, scores)]
+        return labels
 
 
 
