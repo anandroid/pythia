@@ -369,7 +369,7 @@ class VQA2Dataset(BaseDataset):
 
         return self._create_text_labels(classes,scores,metadata.get("thing_classes", None))
 
-    def _create_text_labels(classes, scores, class_names):
+    def _create_text_labels(self, classes, scores, class_names):
         """
         Args:
             classes (list[int] or None):
