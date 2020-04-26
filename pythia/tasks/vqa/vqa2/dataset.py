@@ -187,7 +187,7 @@ class VQA2Dataset(BaseDataset):
 
            # print("Getting detectron features")
             #print(self.get_detectron_features(file_base_name))
-            print(self.get_detectron2_prediction(cv2.imread(file_base_name)))
+            #print(self.get_detectron2_prediction(cv2.imread(file_base_name)))
 
 
 
