@@ -151,7 +151,7 @@ class VQA2Dataset(BaseDataset):
             features = self.features_db[idx]
             print("image features")
             print(features["image_feature_0"])
-            plt.imshow(features[:, :, [2, 1, 0]])
+            plt.imshow(features)
             plt.axis("off")
             current_sample.update(features)
 
