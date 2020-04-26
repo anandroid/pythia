@@ -357,7 +357,9 @@ class VQA2Dataset(BaseDataset):
         # Make prediction
         outputs = predictor(im)
 
-        return outputs
+        return outputs["instances"].to("cpu")
+
+
 
 
 
