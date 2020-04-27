@@ -77,6 +77,10 @@ def _create_text_labels(classes, scores, class_names):
     print("classes list")
     print(classes)
 
+    print('class names')
+    print(len(class_names))
+    print(class_names[67])
+
 
     labels_treshold = []
     labels = None
