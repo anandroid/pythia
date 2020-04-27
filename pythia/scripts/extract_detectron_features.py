@@ -99,6 +99,7 @@ def runForFiles():
     imageDataBaseDic = ImageDatabase(dir)
 
     total = len(imageDataBaseDic)
+    count=0
 
     for imageDataElement in imageDataBaseDic:
         url = imageDataElement['flickr_300k_url']
