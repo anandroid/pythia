@@ -41,11 +41,7 @@ def get_detectron2_prediction(im):
     scores = predictions.scores if predictions.has("scores") else None
     classes = predictions.pred_classes if predictions.has("pred_classes") else None
 
-    print("scores list")
-    print(scores.tolist())
 
-    print("classes list")
-    print(classes.tolist())
 
     metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
     dict_to_save_json = {}
@@ -68,6 +64,14 @@ def _create_text_labels(classes, scores, class_names):
     Returns:
         list[str] or None
     """
+
+    print("scores list")
+    print(scores.tolist())
+
+    print("classes list")
+    print(classes.tolist())
+
+
     labels_treshold = []
     labels = None
     if classes is not None and class_names is not None and len(class_names) > 1:
