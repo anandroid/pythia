@@ -152,7 +152,7 @@ class VQA2Dataset(BaseDataset):
         if self._use_features is True:
             features = self.features_db[idx]
             print("image features")
-            print(features["image_info_0"]["cls_scores"])
+            print(features["image_info_0"]["cls_scores"].tolist())
 
             current_sample.update(features)
 
