@@ -81,7 +81,7 @@ def _create_text_labels(classes, scores, class_names):
 
             labels = ["{:.0f}%".format(s * 100) for s in scores]
         else:
-            for i in len(scores):
+            for i in range(len(scores)):
                 if scores[i] > 0:
                     labels_treshold.append(classes[i])
 
