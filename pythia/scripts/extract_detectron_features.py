@@ -34,16 +34,22 @@ def get_detectron2_prediction(im):
     print("outputs")
     print(outputs)
 
+    print("pred scores")
+    print(predictions.scores)
+
     boxes = predictions.pred_boxes if predictions.has("pred_boxes") else None
     scores = predictions.scores if predictions.has("scores") else None
     classes = predictions.pred_classes if predictions.has("pred_classes") else None
 
+    print("scores list")
+    print(scores)
+
     metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
     dict_to_save_json = {}
-    dict_to_save_json['boxes'] = boxes
-    dict_to_save_json['scores'] = scores
-    dict_to_save_json['classes'] = classes
-    dict_to_save_json['labels'] =_create_text_labels(classes, scores,
+    dict_to_save_json['boxes'] = boxes.tolist()
+    dict_to_save_json['scores'] = scores.tolist()
+    dict_to_save_json['classes'] = classes.tolist()
+    dict_to_save_json['labels'] =_create_text_labels(classes.tolist(), scores.tolist(),
                                                                      metadata.get("thing_classes", None))
 
     return dict_to_save_json
