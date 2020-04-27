@@ -171,7 +171,7 @@ class VQA2Dataset(BaseDataset):
             home = expanduser("~")
 
 
-            file_name = sample_info["image_id"]
+            file_name = sample_info["flickr_original_url"]
             #file_base_name = os.path.join(home+"/textvqa/content/pythia/data/open_images/detectron_fix_100/fc6/train",file_name)
             file_base_name = os.path.join(home+"/textvqa/content/","fruits.jpg")
             file_base_name = file_base_name.split(".")[0]
@@ -189,7 +189,7 @@ class VQA2Dataset(BaseDataset):
             #print(self.get_detectron_features(file_base_name))
             #print(self.get_detectron2_prediction(cv2.imread(file_base_name)))
 
-
+            print(sample_info['image_info_0'])
 
             ocr_token_list = []
 
@@ -197,7 +197,6 @@ class VQA2Dataset(BaseDataset):
                 ocr_token_list.append(ocr_token)
 
             sample_info["ocr_tokens"] = ocr_token_list
-            print(sample_info["flickr_original_url"])
 
             ocr_tokens = [
                 self.ocr_token_processor({"text": token})["text"]
