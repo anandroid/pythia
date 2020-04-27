@@ -42,10 +42,13 @@ def get_detectron2_prediction(im):
     classes = predictions.pred_classes if predictions.has("pred_classes") else None
 
 
+    bboxes =[]
+    for i in range(len(boxes)):
+        bboxes.append(boxes[i])
 
     metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
     dict_to_save_json = {}
-    dict_to_save_json['boxes'] = boxes
+    dict_to_save_json['boxes'] = bboxes
     dict_to_save_json['scores'] = scores.tolist()
     dict_to_save_json['classes'] = classes.tolist()
     dict_to_save_json['labels'] =_create_text_labels(classes.tolist(), scores.tolist(),
