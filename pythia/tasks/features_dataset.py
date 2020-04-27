@@ -88,7 +88,7 @@ class COCOFeaturesDataset(BaseFeaturesDataset):
         features = []
         infos = []
         for feature_reader in self.feature_readers:
-            feature, info = feature_reader.read(feat_file)
+            features, info = feature_reader.read(feat_file)
             # feature = torch.from_numpy(feature).share_memory_()
 
         if not self.should_return_info:
