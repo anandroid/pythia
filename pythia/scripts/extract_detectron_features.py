@@ -9,6 +9,7 @@ from detectron2.data import MetadataCatalog
 import json
 import os
 import cv2
+import requests
 from pythia.tasks.image_database import ImageDatabase
 
 
@@ -68,6 +69,15 @@ def _create_text_labels(self, classes, scores, class_names):
 
     return labels_treshold
 
+
+def get_actual_image(self, image_path):
+    if image_path.startswith('http'):
+        path = requests.get(image_path, stream=True).raw
+    else:
+        path = image_path
+
+    return path
+
 def runForFiles():
     path = os.path.join(
         os.path.abspath(__file__),
@@ -79,7 +89,18 @@ def runForFiles():
     dir ='/home/anandkumar/textvqa/content/pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
 
 
-    print(ImageDatabase(dir)[0])
+    imageDataBaseDic =  ImageDatabase(dir)
+
+    for imageDataElement in imageDataBaseDic:
+        url = imageDataElement['flickr_300k_url']
+        image_id = imageDataElement['image_id']
+
+        dict = {}
+        dict =  get_detectron2_prediction(cv2.imread(get_actual_image(url)))
+        with open(image_id + '.json', 'w') as fp:
+            json.dump(dict, fp, indent=4)
+
+
 
 
 
