@@ -189,7 +189,7 @@ class VQA2Dataset(BaseDataset):
             #print(self.get_detectron_features(file_base_name))
             #print(self.get_detectron2_prediction(cv2.imread(file_base_name)))
 
-            print(sample_info['image_info_0'])
+            #print(sample_info['image_info_0'])
 
             ocr_token_list = []
 
