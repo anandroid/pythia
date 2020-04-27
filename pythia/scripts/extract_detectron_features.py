@@ -115,7 +115,7 @@ def runForFiles():
             json.dump(dict, fp, indent=4)
 
         count = count + 1
-        print("Progress :" + str(int(total / count)) + " : "+image_id)
+        print("Progress :" + str(int((count/total)*100)) + " : "+image_id)
 
     '''
     dir = "../../../data/open_images/resnet152/"
