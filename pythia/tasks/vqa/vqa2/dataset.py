@@ -152,9 +152,8 @@ class VQA2Dataset(BaseDataset):
         if self._use_features is True:
             features = self.features_db[idx]
             print("image features")
-            print(features["image_feature_0"])
-            plt.imshow(features["image_feature_0"].tolist())
-            plt.axis("off")
+            print(features["image_info_0"]["cls_scores"])
+
             current_sample.update(features)
 
         # Add details for OCR like OCR bbox, vectors, tokens here
