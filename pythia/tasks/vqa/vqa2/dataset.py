@@ -376,7 +376,7 @@ class VQA2Dataset(BaseDataset):
         dict_to_save_json['scores']=scores
         dict_to_save_json['classes']=classes
         dict_to_save_json['labels_threshold']=self._create_text_labels(classes,scores,metadata.get("thing_classes", None))
-        with open('data.json', 'w') as fp:
+        with open('detectrondata.json', 'w') as fp:
             json.dump(dict, fp,  indent=4)
 
 
