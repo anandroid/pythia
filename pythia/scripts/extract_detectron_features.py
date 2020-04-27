@@ -71,10 +71,17 @@ def _create_text_labels(self, classes, scores, class_names):
 
 
 def get_actual_image(image_path):
+    print("image_path")
+    print(image_path)
     if image_path.startswith('http'):
         path = requests.get(image_path, stream=True).raw
     else:
         path = image_path
+
+
+    print("path")
+    print(path)
+
 
     return path
 
