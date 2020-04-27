@@ -64,10 +64,10 @@ class ImageDatabase(torch.utils.data.Dataset):
 
         if len(self.data) == 0:
             self.data = self.db
-        print('self.db')
-        print(self.db)
-        print('self.data')
-        print(self.data)
+        #print('self.db')
+        #print(self.db)
+        #print('self.data')
+        #print(self.data)
         #print('.jpg')
         #print(self.data[1]['flickr_original_url'])
 
