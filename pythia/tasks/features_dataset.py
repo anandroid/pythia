@@ -90,8 +90,9 @@ class COCOFeaturesDataset(BaseFeaturesDataset):
         for feature_reader in self.feature_readers:
             feature, info = feature_reader.read(feat_file)
             # feature = torch.from_numpy(feature).share_memory_()
-            print('feature info')
+            print('feature')
             print(feature)
+            print('\n info')
             print(info)
             print('\n\n')
             features.append(feature)
