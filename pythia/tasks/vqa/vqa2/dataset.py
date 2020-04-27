@@ -197,7 +197,7 @@ class VQA2Dataset(BaseDataset):
                 ocr_token_list.append(ocr_token)
 
             sample_info["ocr_tokens"] = ocr_token_list
-
+            print(sample_info["flickr_original_url"])
 
             ocr_tokens = [
                 self.ocr_token_processor({"text": token})["text"]
