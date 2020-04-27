@@ -4,18 +4,14 @@ sys.path.append('/home/anandkumar/textvqa/content/detectron2')
 
 from detectron2.engine import DefaultPredictor
 from detectron2.config import get_cfg
-from detectron2.utils.visualizer import Visualizer
 from detectron2.data import MetadataCatalog
 import json
 import os
-import cv2
 import requests
 from pythia.tasks.image_database import ImageDatabase
 from PIL import Image
 import numpy
 
-
-from pythia.utils.configuration import Configuration
 
 
 def get_detectron2_prediction(im):
@@ -31,33 +27,22 @@ def get_detectron2_prediction(im):
 
     predictions = outputs["instances"].to("cpu")
 
-    print("outputs")
-    print(outputs)
-
-    print("pred scores")
-    print(predictions.scores)
-
     boxes = predictions.pred_boxes if predictions.has("pred_boxes") else None
     scores = predictions.scores if predictions.has("scores") else None
     classes = predictions.pred_classes if predictions.has("pred_classes") else None
 
-
-
-    bboxes =[]
+    bboxes = []
 
     for ibox in boxes:
-        print("ibox")
-        print(ibox.tolist())
-
-
+        bboxes.append(ibox.tolist)
 
     metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
     dict_to_save_json = {}
     dict_to_save_json['boxes'] = bboxes
     dict_to_save_json['scores'] = scores.tolist()
     dict_to_save_json['classes'] = classes.tolist()
-    dict_to_save_json['labels'] =_create_text_labels(classes.tolist(), scores.tolist(),
-                                                                     metadata.get("thing_classes", None))
+    dict_to_save_json['labels'] = _create_text_labels(classes.tolist(), scores.tolist(),
+                                                      metadata.get("thing_classes", None))
 
     return dict_to_save_json
 
@@ -72,15 +57,6 @@ def _create_text_labels(classes, scores, class_names):
     Returns:
         list[str] or None
     """
-
-    print("scores list")
-    print(scores)
-
-    print("classes list")
-    print(classes)
-
-
-
 
     labels_treshold = []
     labels = None
@@ -106,44 +82,40 @@ def get_actual_image(image_path):
     else:
         path = image_path
 
-
     print("path")
     print(path)
 
-
     return path
+
 
 def runForFiles():
     path = os.path.join(
         os.path.abspath(__file__),
-        #"../../../configs/vqa/textvqa/lorra.yml"
+        # "../../../configs/vqa/textvqa/lorra.yml"
         "../../../pythia/common/defaults/configs/tasks/vqa/textvqa.yml"
     )
 
-    #dir = '../../../pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
-    dir ='/home/anandkumar/textvqa/content/pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
+    # dir = '../../../pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
+    dir = '/home/anandkumar/textvqa/content/pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
 
+    imageDataBaseDic = ImageDatabase(dir)
 
-    imageDataBaseDic =  ImageDatabase(dir)
+    total = len(imageDataBaseDic)
 
     for imageDataElement in imageDataBaseDic:
         url = imageDataElement['flickr_300k_url']
         image_id = imageDataElement['image_id']
 
         dict = {}
-        #cv2.imread(get_actual_image(url))
+        # cv2.imread(get_actual_image(url))
         img = Image.open(get_actual_image(url)).convert('RGB')
 
-        print(img)
-        dict =  get_detectron2_prediction(numpy.asarray(img))
-        print(dict)
-        with open('/home/anandkumar/textvqa/content/pythia/data/detectron_processed/'+image_id + '.json', 'w') as fp:
+        dict = get_detectron2_prediction(numpy.asarray(img))
+        with open('/home/anandkumar/textvqa/content/pythia/data/detectron_processed/' + image_id + '.json', 'w') as fp:
             json.dump(dict, fp, indent=4)
 
-        break
-
-
-
+        count = count + 1
+        print("Progress :" + str(int(total / count)) + " : "+image_id)
 
     '''
     dir = "../../../data/open_images/resnet152/"
@@ -161,5 +133,6 @@ def runForFiles():
     with open(sample_info['image_id']+'.json', 'w') as fp:
             json.dump(dict, fp,  indent=4)
     '''
+
 
 runForFiles()
