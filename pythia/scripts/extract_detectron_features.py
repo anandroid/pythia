@@ -75,15 +75,13 @@ def _create_text_labels(classes, scores, class_names):
 
 
 def get_actual_image(image_path):
-    print("image_path")
-    print(image_path)
+
     if image_path.startswith('http'):
         path = requests.get(image_path, stream=True).raw
     else:
         path = image_path
 
-    print("path")
-    print(path)
+
 
     return path
 
@@ -111,6 +109,7 @@ def runForFiles():
         img = Image.open(get_actual_image(url)).convert('RGB')
 
         dict = get_detectron2_prediction(numpy.asarray(img))
+        print(dict)
         with open('/home/anandkumar/textvqa/content/pythia/data/detectron_processed/' + image_id + '.json', 'w') as fp:
             json.dump(dict, fp, indent=4)
 
