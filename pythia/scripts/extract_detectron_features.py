@@ -75,7 +75,7 @@ def runForFiles():
         "../../../pythia/common/defaults/configs/tasks/vqa/textvqa.yml"
     )
 
-    dir = '../../../data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
+    dir = '../../../pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
 
     print(ImageDatabase(dir)[0])
 
