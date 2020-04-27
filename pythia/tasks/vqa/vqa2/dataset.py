@@ -161,6 +161,7 @@ class VQA2Dataset(BaseDataset):
         # Depending on whether we are using soft copy this can add
         # dynamic answer space
         current_sample = self.add_answer_info(sample_info, current_sample)
+        print('\n\n current_sample')
         print(current_sample)
         return current_sample
 
