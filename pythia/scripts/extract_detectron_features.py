@@ -70,7 +70,7 @@ def _create_text_labels(self, classes, scores, class_names):
     return labels_treshold
 
 
-def get_actual_image(self, image_path):
+def get_actual_image(image_path):
     if image_path.startswith('http'):
         path = requests.get(image_path, stream=True).raw
     else:
@@ -101,6 +101,7 @@ def runForFiles():
         with open('/home/anandkumar/textvqa/content/pythia/data/detectron_processed/'+image_id + '.json', 'w') as fp:
             json.dump(dict, fp, indent=4)
 
+        break
 
 
 
