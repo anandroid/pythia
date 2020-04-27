@@ -9,6 +9,8 @@ from detectron2.data import MetadataCatalog
 import json
 import os
 import cv2
+from pythia.tasks.image_database import ImageDatabase
+
 
 from pythia.utils.configuration import Configuration
 
@@ -73,19 +75,17 @@ def runForFiles():
         "../../../pythia/common/defaults/configs/tasks/vqa/textvqa.yml"
     )
 
-    configuration = Configuration(os.path.abspath(path))
+    dir = '../../../data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
 
-    configuration.freeze()
+    print(ImageDatabase(dir)[0])
 
-    config = configuration.get_config()
 
-    print("configuration")
-    print(config)
 
-    imdb_files = config.imdb_files
+    '''
+    dir = "../../../data/open_images/resnet152/"
 
-    print(imdb_files)
-
+    images_npy = os.listdir(dir)
+    '''
 
     '''
     imdb_file = imdb_files[dataset_type][imdb_file_index]
