@@ -66,10 +66,10 @@ def _create_text_labels(classes, scores, class_names):
     """
 
     print("scores list")
-    print(scores.tolist())
+    print(scores)
 
     print("classes list")
-    print(classes.tolist())
+    print(classes)
 
 
     labels_treshold = []
