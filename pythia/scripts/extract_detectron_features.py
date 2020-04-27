@@ -69,7 +69,8 @@ def _create_text_labels(self, classes, scores, class_names):
 def runForFiles():
     path = os.path.join(
         os.path.abspath(__file__),
-        "../../../configs/vqa/textvqa/lorra.yml"
+        #"../../../configs/vqa/textvqa/lorra.yml"
+        "../../../pythia/common/defaults/configs/tasks/vqa/textvqa.yml"
     )
 
     configuration = Configuration(os.path.abspath(path))
