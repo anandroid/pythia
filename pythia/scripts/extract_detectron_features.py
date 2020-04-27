@@ -42,11 +42,12 @@ def get_detectron2_prediction(im):
     classes = predictions.pred_classes if predictions.has("pred_classes") else None
 
 
+
     bboxes =[]
     for i in range(len(boxes[0])):
         print("boxes i")
-        print(boxes[0][i])
-        bboxes.append(boxes[0][i])
+        print((boxes[0]).to('cpu')[i])
+        bboxes.append((boxes[0]).to('cpu')[i])
 
 
     metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
@@ -77,9 +78,7 @@ def _create_text_labels(classes, scores, class_names):
     print("classes list")
     print(classes)
 
-    print('class names')
-    print(len(class_names))
-    print(class_names[67])
+
 
 
     labels_treshold = []
@@ -93,7 +92,7 @@ def _create_text_labels(classes, scores, class_names):
         else:
             for i in range(len(scores)):
                 if scores[i] > 0:
-                    labels_treshold.append(classes[i])
+                    labels_treshold.append(labels[i])
 
     return labels_treshold
 
