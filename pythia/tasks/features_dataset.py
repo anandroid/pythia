@@ -29,6 +29,7 @@ class FeaturesDataset:
         print('features_dataset.py')
         print(idx)
         print(self.features_db[idx])
+        print('\n\n')
         return self.features_db[idx]
 
     def __len__(self):
@@ -92,6 +93,7 @@ class COCOFeaturesDataset(BaseFeaturesDataset):
             print('feature info')
             print(feature)
             print(info)
+            print('\n\n')
             features.append(feature)
             infos.append(info)
 
@@ -126,7 +128,7 @@ class COCOFeaturesDataset(BaseFeaturesDataset):
             item["image_feature_%s" % idx] = image_feature
             if infos is not None:
                 item["image_info_%s" % idx] = infos[idx]
-        print('get_image_features')
-        print(item)
-        print('img')
+        #print('get_image_features')
+        #print(item)
+        #print('img')
         return item
