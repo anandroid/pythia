@@ -90,13 +90,6 @@ class COCOFeaturesDataset(BaseFeaturesDataset):
         for feature_reader in self.feature_readers:
             feature, info = feature_reader.read(feat_file)
             # feature = torch.from_numpy(feature).share_memory_()
-            '''print('feature')
-            print(feature)
-            print('\n info')
-            print(info)
-            print('\n\n')
-            features.append(feature)
-            infos.append(info)'''
 
         if not self.should_return_info:
             infos = None
@@ -129,7 +122,6 @@ class COCOFeaturesDataset(BaseFeaturesDataset):
             item["image_feature_%s" % idx] = image_feature
             if infos is not None:
                 item["image_info_%s" % idx] = infos[idx]
-        #print('get_image_features')
-        #print(item)
-        #print('img')
+        print('get_image_features')
+        print(item)
         return item
