@@ -44,6 +44,8 @@ def get_detectron2_prediction(im):
 
     bboxes =[]
     for i in range(len(boxes)):
+        print("boxes i")
+        print(boxes[i])
         bboxes.append(boxes[i])
 
     metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
