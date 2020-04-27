@@ -3,7 +3,7 @@ import os
 
 import torch
 import tqdm
-
+import json
 from pythia.common.sample import Sample
 from pythia.tasks.base_dataset import BaseDataset
 from pythia.tasks.features_dataset import FeaturesDataset
@@ -371,10 +371,17 @@ class VQA2Dataset(BaseDataset):
         classes = predictions.pred_classes if predictions.has("pred_classes") else None
 
         metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
+        dict_to_save_json={}
+        dict_to_save_json['boxes']=boxes
+        dict_to_save_json['scores']=scores
+        dict_to_save_json['classes']=classes
+        dict_to_save_json['labels_threshold']=self._create_text_labels(classes,scores,metadata.get("thing_classes", None))
+        with open('data.json', 'w') as fp:
+            json.dump(dict, fp,  indent=4)
 
 
 
-        return self._create_text_labels(classes,scores,metadata.get("thing_classes", None))
+        return dict_to_save_json['labels_threshold']
 
     def _create_text_labels(self, classes, scores, class_names):
         """
