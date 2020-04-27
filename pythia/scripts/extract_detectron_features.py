@@ -34,7 +34,7 @@ def get_detectron2_prediction(im):
     bboxes = []
 
     for ibox in boxes:
-        bboxes.append(ibox.tolist)
+        bboxes.append(ibox.tolist())
 
     metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
     dict_to_save_json = {}
