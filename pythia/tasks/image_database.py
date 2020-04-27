@@ -66,10 +66,12 @@ class ImageDatabase(torch.utils.data.Dataset):
             self.data = self.db
         print('self.data')
         print(self.data)
-        print('self.db')
-        print(self.db)
-        print('self.metadata')
-        print(self.metadata)
+        print('.jpg')
+        print(self.data['flickr_original_url'])
+        #print('self.db')
+        #print(self.db)
+        #print('self.metadata')
+        #print(self.metadata)
 
     def __len__(self):
         return len(self.data) - self.start_idx
