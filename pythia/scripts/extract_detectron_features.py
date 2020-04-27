@@ -42,7 +42,10 @@ def get_detectron2_prediction(im):
     classes = predictions.pred_classes if predictions.has("pred_classes") else None
 
     print("scores list")
-    print(scores)
+    print(scores.tolist())
+
+    print("classes list")
+    print(classes.tolist())
 
     metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
     dict_to_save_json = {}
