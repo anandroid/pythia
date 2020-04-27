@@ -77,7 +77,10 @@ def runForFiles():
 
     configuration.freeze()
 
-    config = configuration
+    config = configuration.get_config()
+
+    print("configuration")
+    print(config)
 
     imdb_files = config.imdb_files
 
