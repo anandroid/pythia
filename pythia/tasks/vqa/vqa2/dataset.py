@@ -151,9 +151,9 @@ class VQA2Dataset(BaseDataset):
 
         if self._use_features is True:
             features = self.features_db[idx]
-            #print("image features")
+            print("image features")
             #print(features["image_info_0"]["cls_scores"].tolist())
-
+            print(features)
             current_sample.update(features)
 
         # Add details for OCR like OCR bbox, vectors, tokens here
@@ -161,7 +161,7 @@ class VQA2Dataset(BaseDataset):
         # Depending on whether we are using soft copy this can add
         # dynamic answer space
         current_sample = self.add_answer_info(sample_info, current_sample)
-
+        print(current_sample)
         return current_sample
 
     def add_ocr_details(self, sample_info, sample):
