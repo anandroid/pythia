@@ -192,6 +192,11 @@ class VQA2Dataset(BaseDataset):
            # print("Getting detectron features")
             #print(self.get_detectron_features(file_base_name))
             #print(self.get_detectron2_prediction(cv2.imread(file_base_name)))
+            #variable to receive and store in .json file
+            #dict={}
+            #dict = self.get_detectron2_prediction(cv2.imread(file_base_name))
+            #with open(sample_info['image_id']+'.json', 'w') as fp:
+            #    json.dump(dict, fp,  indent=4)
 
             #print(sample_info['image_info_0'])
 
@@ -376,12 +381,8 @@ class VQA2Dataset(BaseDataset):
         dict_to_save_json['scores']=scores
         dict_to_save_json['classes']=classes
         dict_to_save_json['labels_threshold']=self._create_text_labels(classes,scores,metadata.get("thing_classes", None))
-        with open('detectrondata.json', 'w') as fp:
-            json.dump(dict, fp,  indent=4)
 
-
-
-        return dict_to_save_json['labels_threshold']
+        return dict_to_save_json
 
     def _create_text_labels(self, classes, scores, class_names):
         """
