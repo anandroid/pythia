@@ -116,12 +116,12 @@ class COCOFeaturesDataset(BaseFeaturesDataset):
         image_features, infos = self._get_image_features_and_info(image_file_name)
 
         item = {}
-        print('\n\n\nimage_features')
-        print(image_features)
+        #print('\n\n\nimage_features')
+        #print(image_features)
         for idx, image_feature in enumerate(image_features):
             item["image_feature_%s" % idx] = image_feature
             if infos is not None:
                 item["image_info_%s" % idx] = infos[idx]
-        #print('get_image_features')
-        #print(item)
+        print('\n\n get_image_features')
+        print(item)
         return item
