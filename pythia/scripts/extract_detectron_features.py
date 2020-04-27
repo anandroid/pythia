@@ -16,7 +16,7 @@ from pythia.tasks.image_database import ImageDatabase
 from pythia.utils.configuration import Configuration
 
 
-def get_detectron2_prediction(self, im):
+def get_detectron2_prediction(im):
     cfg = get_cfg()
     cfg.merge_from_file(
         "/home/anandkumar/textvqa/content/detectron2/configs/COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml")
@@ -44,7 +44,7 @@ def get_detectron2_prediction(self, im):
     return dict_to_save_json
 
 
-def _create_text_labels(self, classes, scores, class_names):
+def _create_text_labels(classes, scores, class_names):
     """
     Args:
         classes (list[int] or None):
