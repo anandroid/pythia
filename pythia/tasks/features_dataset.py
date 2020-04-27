@@ -128,4 +128,5 @@ class COCOFeaturesDataset(BaseFeaturesDataset):
                 item["image_info_%s" % idx] = infos[idx]
         print('get_image_features')
         print(item)
+        print('img')
         return item
