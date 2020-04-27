@@ -43,10 +43,11 @@ def get_detectron2_prediction(im):
 
 
     bboxes =[]
-    for i in range(len(boxes)):
+    for i in range(len(boxes[0])):
         print("boxes i")
         print(boxes[i])
         bboxes.append(boxes[i])
+
 
     metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
     dict_to_save_json = {}
