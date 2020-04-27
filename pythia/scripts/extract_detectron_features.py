@@ -103,7 +103,8 @@ def runForFiles():
         image_id = imageDataElement['image_id']
 
         dict = {}
-        dict =  get_detectron2_prediction(cv2.imread(get_actual_image(url)))
+        #cv2.imread(get_actual_image(url))
+        dict =  get_detectron2_prediction(url)
         print(dict)
         with open('/home/anandkumar/textvqa/content/pythia/data/detectron_processed/'+image_id + '.json', 'w') as fp:
             json.dump(dict, fp, indent=4)
