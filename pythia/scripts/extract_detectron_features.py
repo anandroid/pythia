@@ -12,6 +12,7 @@ import cv2
 import requests
 from pythia.tasks.image_database import ImageDatabase
 from PIL import Image
+import numpy
 
 
 from pythia.utils.configuration import Configuration
@@ -106,8 +107,9 @@ def runForFiles():
         dict = {}
         #cv2.imread(get_actual_image(url))
         img = Image.open(get_actual_image(url)).convert('RGB')
+
         print(img)
-        dict =  get_detectron2_prediction(cv2.imread(img))
+        dict =  get_detectron2_prediction(numpy.asarray(img))
         print(dict)
         with open('/home/anandkumar/textvqa/content/pythia/data/detectron_processed/'+image_id + '.json', 'w') as fp:
             json.dump(dict, fp, indent=4)
