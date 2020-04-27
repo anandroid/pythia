@@ -46,7 +46,7 @@ def get_detectron2_prediction(im):
 
     metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
     dict_to_save_json = {}
-    dict_to_save_json['boxes'] = boxes.tolist()
+    dict_to_save_json['boxes'] = boxes
     dict_to_save_json['scores'] = scores.tolist()
     dict_to_save_json['classes'] = classes.tolist()
     dict_to_save_json['labels'] =_create_text_labels(classes.tolist(), scores.tolist(),
