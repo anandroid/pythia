@@ -110,7 +110,7 @@ def runForFiles():
         img = Image.open(get_actual_image(url)).convert('RGB')
 
         dict = get_detectron2_prediction(numpy.asarray(img))
-        print(dict)
+        #print(dict)
         with open('/home/anandkumar/textvqa/content/pythia/data/detectron_processed/' + image_id + '.json', 'w') as fp:
             json.dump(dict, fp, indent=4)
 
