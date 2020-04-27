@@ -11,6 +11,7 @@ import os
 import cv2
 import requests
 from pythia.tasks.image_database import ImageDatabase
+from PIL import Image
 
 
 from pythia.utils.configuration import Configuration
@@ -38,7 +39,7 @@ def get_detectron2_prediction(im):
     dict_to_save_json['boxes'] = boxes
     dict_to_save_json['scores'] = scores
     dict_to_save_json['classes'] = classes
-    dict_to_save_json['labels'] = self._create_text_labels(classes, scores,
+    dict_to_save_json['labels'] =_create_text_labels(classes, scores,
                                                                      metadata.get("thing_classes", None))
 
     return dict_to_save_json
@@ -104,7 +105,8 @@ def runForFiles():
 
         dict = {}
         #cv2.imread(get_actual_image(url))
-        dict =  get_detectron2_prediction(url)
+        img = Image.open(get_actual_image(url)).convert("RGB")
+        dict =  get_detectron2_prediction(img)
         print(dict)
         with open('/home/anandkumar/textvqa/content/pythia/data/detectron_processed/'+image_id + '.json', 'w') as fp:
             json.dump(dict, fp, indent=4)
