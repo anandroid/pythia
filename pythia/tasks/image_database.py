@@ -67,7 +67,7 @@ class ImageDatabase(torch.utils.data.Dataset):
         print('self.data')
         print(self.data)
         print('.jpg')
-        print(self.data[0]['flickr_original_url'])
+        print(self.data[1]['flickr_original_url'])
         #print('self.db')
         #print(self.db)
         #print('self.metadata')
