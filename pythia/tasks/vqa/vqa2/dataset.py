@@ -124,6 +124,8 @@ class VQA2Dataset(BaseDataset):
         sample_info = self.imdb[idx]
         print('sample_info')
         print(sample_info['image_id'])
+        print(sample_info['image_classes'])
+        print(sample_info['flickr_original_url'])
         current_sample = Sample()
 
         if "question_tokens" in sample_info:
