@@ -96,6 +96,9 @@ def runForFiles():
     # dir = '../../../pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
     dir = '/home/anandkumar/textvqa/content/pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
 
+
+    outputdir ='/home/anandkumar/textvqa/content/pythia/data/detectron_processed/'
+
     imageDataBaseDic = ImageDatabase(dir)
 
     total = len(imageDataBaseDic)
@@ -103,13 +106,21 @@ def runForFiles():
 
     start=20495
     count=start
-    for i in range(start,len(imageDataBaseDic)):
+    for i in range(0,len(imageDataBaseDic)):
         print("i="+str(i))
 
-        imageDataElement = imageDataBaseDic[i+start]
+        imageDataElement = imageDataBaseDic[i]
         try:
             url = imageDataElement['flickr_300k_url']
             image_id = imageDataElement['image_id']
+
+            outputfile = outputdir + image_id + '.json'
+
+            if os.path.isfile(outputfile):
+                 print("exists :"+image_id)
+                 continue
+
+
 
             dict = {}
             # cv2.imread(get_actual_image(url))
@@ -117,7 +128,7 @@ def runForFiles():
 
             dict = get_detectron2_prediction(numpy.asarray(img))
             #print(dict)
-            with open('/home/anandkumar/textvqa/content/pythia/data/detectron_processed/' + image_id + '.json', 'w') as fp:
+            with open(outputfile, 'w') as fp:
                 json.dump(dict, fp, indent=4)
 
             count = count + 1
