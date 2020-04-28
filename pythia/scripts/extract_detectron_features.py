@@ -120,6 +120,7 @@ def runForFiles():
 
             count = count + 1
             print("Progress :" + str(count)+"/" + str(total) + " : "+image_id)
+            img.close()
         except:
             print("")
 
