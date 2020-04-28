@@ -204,7 +204,7 @@ class VQA2Dataset(BaseDataset):
             imageid = sample_info['image_id']
             outputfile = outputdir + imageid + '.json'
             if os.path.isfile(outputfile):
-                 print("exists :"+imageid + "i ="+str(i))
+                 print("exists :"+imageid)
 
 
             ocr_token_list = []
