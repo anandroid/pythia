@@ -163,8 +163,7 @@ class VQA2Dataset(BaseDataset):
         # Depending on whether we are using soft copy this can add
         # dynamic answer space
         current_sample = self.add_answer_info(sample_info, current_sample)
-        print('\n\n current_sample')
-        print(current_sample)
+
         return current_sample
 
     def add_ocr_details(self, sample_info, sample):
@@ -173,33 +172,6 @@ class VQA2Dataset(BaseDataset):
             # Preprocess OCR tokens
 
             home = expanduser("~")
-
-
-            file_name = sample_info["flickr_original_url"]
-            #file_base_name = os.path.join(home+"/textvqa/content/pythia/data/open_images/detectron_fix_100/fc6/train",file_name)
-            file_base_name = os.path.join(home+"/textvqa/content/","fruits.jpg")
-            file_base_name = file_base_name.split(".")[0]
-            info_file_base_name = file_base_name + "_info.npy"
-            #file_base_name = file_base_name + ".npy"
-            file_base_name = file_base_name + ".jpg"
-            '''
-
-            print("Feature extractor")
-            print(file_base_name)
-            print(FeatureExtractor().get_detectron_features_thresh([file_base_name],"fc6",0))
-            '''
-
-           # print("Getting detectron features")
-            #print(self.get_detectron_features(file_base_name))
-            #print(self.get_detectron2_prediction(cv2.imread(file_base_name)))
-            #variable to receive and store in .json file
-            #dict={}
-            #dict = self.get_detectron2_prediction(cv2.imread(file_base_name))
-            #with open(sample_info['image_id']+'.json', 'w') as fp:
-            #    json.dump(dict, fp,  indent=4)
-
-            #print(sample_info['image_info_0'])
-
             outputdir ='/home/anandkumar/textvqa/content/pythia/data/detectron_processed/'
             imageid = sample_info['image_id']
             outputfile = outputdir + imageid + '.json'
