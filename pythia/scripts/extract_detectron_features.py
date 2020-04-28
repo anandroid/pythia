@@ -102,12 +102,12 @@ def runForFiles():
     imageDataBaseDic = ImageDatabase(dir)
 
     total = len(imageDataBaseDic)
-    count=0
 
-    start=20495
-    count=start
+
+
+
     for i in range(0,len(imageDataBaseDic)):
-        print("i="+str(i))
+
 
         imageDataElement = imageDataBaseDic[i]
         try:
@@ -117,7 +117,7 @@ def runForFiles():
             outputfile = outputdir + image_id + '.json'
 
             if os.path.isfile(outputfile):
-                 print("exists :"+image_id)
+                 print("exists :"+image_id + "i ="+i)
                  continue
 
 
@@ -131,8 +131,8 @@ def runForFiles():
             with open(outputfile, 'w') as fp:
                 json.dump(dict, fp, indent=4)
 
-            count = count + 1
-            print("Progress :" + str(count)+"/" + str(total) + " : "+image_id)
+
+            print("Progress :" + str(i)+"/" + str(total) + " : "+image_id)
             img.close()
         except:
             print("")
