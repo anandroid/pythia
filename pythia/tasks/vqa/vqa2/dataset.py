@@ -210,7 +210,7 @@ class VQA2Dataset(BaseDataset):
             ocr_token_list = []
             with open(outputfile, 'r') as f:
                 d_dict = json.load(f)
-            for var in len(d_dict['labels']):
+            for var in range(len(d_dict['labels'])):
                 if d_dict['scores'][var]>=0.8:
                     ocr_token_list.append(d_dict['labels'][var])
             print('\ninstance module')
