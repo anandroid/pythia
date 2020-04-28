@@ -117,7 +117,7 @@ def runForFiles():
             outputfile = outputdir + image_id + '.json'
 
             if os.path.isfile(outputfile):
-                 print("exists :"+image_id + "i ="+i)
+                 print("exists :"+image_id + "i ="+str(i))
                  continue
 
 
