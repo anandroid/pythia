@@ -204,22 +204,25 @@ class VQA2Dataset(BaseDataset):
             imageid = sample_info['image_id']
             outputfile = outputdir + imageid + '.json'
             if os.path.isfile(outputfile):
-                 print("exists :"+imageid)
+                #print("exists :"+imageid)
+                detectron_label_list = []
+                with open(outputfile, 'r') as f:
+                    d_dict = json.load(f)
+                for var in range(len(d_dict['labels'])):
+                    if d_dict['scores'][var]>=0.8:
+                        detectron_label_list.append(d_dict['labels'][var])
+                #print('\ninstance module')
+                print(detectron_label_list)
 
+                for detectron_label in detectron_label_list:
+                    sample_info["ocr_tokens"].append(detectron_label)
 
-            ocr_token_list = []
-            with open(outputfile, 'r') as f:
-                d_dict = json.load(f)
-            for var in range(len(d_dict['labels'])):
-                if d_dict['scores'][var]>=0.8:
-                    ocr_token_list.append(d_dict['labels'][var])
-            print('\ninstance module')
-            print(ocr_token_list)
+            ocr_token_list=[]
 
             for ocr_token in generate_ngrams_range(sample_info["ocr_tokens"],(1,4)):
                 ocr_token_list.append(ocr_token)
-            print('\nOCR')
-            print(ocr_token_list)
+
+            #print(ocr_token_list)
 
 
             sample_info["ocr_tokens"] = ocr_token_list
