@@ -200,10 +200,27 @@ class VQA2Dataset(BaseDataset):
 
             #print(sample_info['image_info_0'])
 
+            outputdir ='/home/anandkumar/textvqa/content/pythia/data/detectron_processed/'
+            imageid = sample_info['image_id']
+            outputfile = outputdir + imageid + '.json'
+            if os.path.isfile(outputfile):
+                 print("exists :"+imageid + "i ="+str(i))
+                 continue
+
             ocr_token_list = []
+            with open(outputfile, 'r') as f:
+                d_dict = json.load(f)
+            for var in len(d_dict['labels']):
+                if d_dict['scores'][var]>=0.8:
+                    ocr_token_list.append(d_dict['labels'][var])
+            print('\ninstance module')
+            print(ocr_token_list)
 
             for ocr_token in generate_ngrams_range(sample_info["ocr_tokens"],(1,4)):
                 ocr_token_list.append(ocr_token)
+            print('\nOCR')
+            print(ocr_token_list)
+
 
             sample_info["ocr_tokens"] = ocr_token_list
 
