@@ -101,7 +101,7 @@ def runForFiles():
     total = len(imageDataBaseDic)
     count=0
 
-    start=12516
+    start=20495
     count=start
     for i in range(start,len(imageDataBaseDic)):
         imageDataElement = imageDataBaseDic[i+start]
