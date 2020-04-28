@@ -122,6 +122,5 @@ class COCOFeaturesDataset(BaseFeaturesDataset):
             item["image_feature_%s" % idx] = image_feature
             if infos is not None:
                 item["image_info_%s" % idx] = infos[idx]
-        print('\n\n get_image_features')
-        print(item)
+
         return item
