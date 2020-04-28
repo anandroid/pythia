@@ -104,6 +104,8 @@ def runForFiles():
     start=20495
     count=start
     for i in range(start,len(imageDataBaseDic)):
+        print("i="+str(i))
+
         imageDataElement = imageDataBaseDic[i+start]
         try:
             url = imageDataElement['flickr_300k_url']
