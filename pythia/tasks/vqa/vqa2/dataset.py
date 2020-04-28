@@ -122,10 +122,7 @@ class VQA2Dataset(BaseDataset):
 
     def load_item(self, idx):
         sample_info = self.imdb[idx]
-        print('sample_info')
-        print(sample_info['image_id'])
-        print(sample_info['image_classes'])
-        print(sample_info['flickr_original_url'])
+
         current_sample = Sample()
 
         if "question_tokens" in sample_info:
@@ -194,7 +191,7 @@ class VQA2Dataset(BaseDataset):
             for ocr_token in generate_ngrams_range(sample_info["ocr_tokens"],(1,4)):
                 ocr_token_list.append(ocr_token)
 
-            #print(ocr_token_list)
+            print(ocr_token_list)
 
 
             sample_info["ocr_tokens"] = ocr_token_list
