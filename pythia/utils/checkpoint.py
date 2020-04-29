@@ -227,12 +227,16 @@ class Checkpoint:
             "config": self.config,
         }
 
+        best_model_file =  os.path.join(
+            self.ckpt_foldername, self.ckpt_prefix + "_final.pth"
+        )
         git_metadata_dict = self._get_vcs_fields()
         ckpt.update(git_metadata_dict)
 
         torch.save(ckpt, ckpt_filepath)
 
         if update_best:
+            torch.save(self.trainer.model.state_dict(), best_model_file)
             torch.save(ckpt, best_ckpt_filepath)
 
     def restore(self):
