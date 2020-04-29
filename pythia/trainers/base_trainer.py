@@ -27,8 +27,8 @@ class BaseTrainer:
     def __init__(self, config):
 
         self.config = config
-        self.checkpoint = Checkpoint(self)
-        self.checkpoint.restore()
+        #self.checkpoint = Checkpoint(self)
+        #self.checkpoint.restore()
         self.profiler = Timer()
 
     def load(self):
@@ -143,6 +143,7 @@ class BaseTrainer:
 
     def load_extras(self):
         self.checkpoint = Checkpoint(self)
+        self.checkpoint.restore()
         self.meter = Meter()
 
         self.training_parameters = self.config.training_parameters
