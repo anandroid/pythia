@@ -81,6 +81,8 @@ class Checkpoint:
                     "Tried to resume but checkpoint filepath {} "
                     "is not present. Skipping.".format(ckpt_filepath)
                 )
+        print(" loading the checkpoint ")
+        self._load(ckpt_filepath)
 
     def _load(self, file):
         self.trainer.writer.write("Loading checkpoint")
