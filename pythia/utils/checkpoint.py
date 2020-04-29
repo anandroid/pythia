@@ -71,7 +71,7 @@ class Checkpoint:
         )
 
         print(" loaded file : " + str(ckpt_filepath))
-        tp.resume=True
+        
         if tp.resume is True:
             if os.path.exists(ckpt_filepath):
                 print(" Entered this function ckpt ")
