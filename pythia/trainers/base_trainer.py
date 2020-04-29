@@ -207,7 +207,7 @@ class BaseTrainer:
             self.max_iterations = math.inf
 
         print( " --- loading already existing model --- ")
-        self.model.load_extras()
+        self.model.load()
         self.model.train()
         self.train_timer = Timer()
         self.snapshot_timer = Timer()
