@@ -65,24 +65,21 @@ class Checkpoint:
             else:
                 raise RuntimeError("{} doesn't exist".format(tp.resume_file))
 
-        print( " === loading *** ckpt model ==== ")
+        
         ckpt_filepath = os.path.join(
             self.ckpt_foldername, self.ckpt_prefix + "best.ckpt"
         )
 
-        print(" loaded file : " + str(ckpt_filepath))
-        
+        print(" loaded ckpt file : " + str(ckpt_filepath))
         if tp.resume is True:
             if os.path.exists(ckpt_filepath):
-                print(" Entered this function ckpt ")
+                print(" entered the loaded function ")
                 self._load(ckpt_filepath)
             else:
                 warnings.warn(
                     "Tried to resume but checkpoint filepath {} "
                     "is not present. Skipping.".format(ckpt_filepath)
                 )
-        print(" loading the checkpoint ")
-        self._load(ckpt_filepath)
 
     def _load(self, file):
         self.trainer.writer.write("Loading checkpoint")
