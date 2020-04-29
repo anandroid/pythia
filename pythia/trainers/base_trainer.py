@@ -25,7 +25,10 @@ from pythia.utils.timer import Timer
 @registry.register_trainer('base_trainer')
 class BaseTrainer:
     def __init__(self, config):
+
         self.config = config
+        self.checkpoint = Checkpoint(self)
+        self.checkpoint.restore()
         self.profiler = Timer()
 
     def load(self):
@@ -207,7 +210,7 @@ class BaseTrainer:
             self.max_iterations = math.inf
 
         print( " --- loading already existing model --- ")
-        self.model.load()
+        #self.model.load()
         self.model.train()
         self.train_timer = Timer()
         self.snapshot_timer = Timer()
