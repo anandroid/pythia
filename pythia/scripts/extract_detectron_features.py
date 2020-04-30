@@ -1,6 +1,6 @@
 import sys
 
-sys.path.append('/home/anandkumar/textvqa/content/detectron2')
+sys.path.append('/home/anand/projects/textvqa/content/detectron2')
 
 from detectron2.engine import DefaultPredictor
 from detectron2.config import get_cfg
@@ -17,7 +17,7 @@ import numpy
 def get_detectron2_prediction(im):
     cfg = get_cfg()
     cfg.merge_from_file(
-        "/home/anandkumar/textvqa/content/detectron2/configs/COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml")
+        "/home/anand/projects/textvqa/content/detectron2/configs/COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml")
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  # set threshold for this model
     cfg.MODEL.WEIGHTS = "detectron2://COCO-Detection/faster_rcnn_R_101_FPN_3x/137851257/model_final_f6e8b1.pkl"
     predictor = DefaultPredictor(cfg)
@@ -94,10 +94,10 @@ def runForFiles():
     )
 
     # dir = '../../../pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
-    dir = '/home/anandkumar/textvqa/content/pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
+    dir = '/home/anand/projects/textvqa/content/pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
 
 
-    outputdir ='/home/anandkumar/textvqa/content/pythia/data/detectron_processed/'
+    outputdir ='/home/anand/projects/textvqa/content/pythia/data/detectron_processed/'
 
     imageDataBaseDic = ImageDatabase(dir)
 

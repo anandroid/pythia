@@ -24,7 +24,7 @@ import numpy as np
 from os.path import expanduser
 import sys
 
-sys.path.append('/home/anandkumar/textvqa/content/detectron2')
+sys.path.append('/home/anand/projects/detectron2')
 
 from detectron2.engine import DefaultPredictor
 from detectron2.config import get_cfg
@@ -169,7 +169,7 @@ class VQA2Dataset(BaseDataset):
             # Preprocess OCR tokens
 
             home = expanduser("~")
-            outputdir ='/home/anandkumar/textvqa/content/pythia/data/detectron_processed/'
+            outputdir ='/home/anand/projects/textvqa/content/pythia/data/detectron_processed/'
             imageid = sample_info['image_id']
             outputfile = outputdir + imageid + '.json'
             if os.path.isfile(outputfile):
@@ -264,11 +264,11 @@ class VQA2Dataset(BaseDataset):
 
     def _build_detection_model(self):
 
-        cfg.merge_from_file('/home/anandkumar/textvqa/content/model_data/detectron_model.yaml')
+        cfg.merge_from_file('/home/anand/projects/textvqa/content/model_data/detectron_model.yaml')
         cfg.freeze()
 
         model = build_detection_model(cfg)
-        checkpoint = torch.load('/home/anandkumar/textvqa/content/model_data/detectron_model.pth',
+        checkpoint = torch.load('/home/anand/projects/textvqa/content/model_data/detectron_model.pth',
                                 map_location=torch.device("cpu"))
 
         load_state_dict(model, checkpoint.pop("model"))
@@ -350,7 +350,7 @@ class VQA2Dataset(BaseDataset):
 
     def get_detectron2_prediction(self,im):
         cfg = get_cfg()
-        cfg.merge_from_file("/home/anandkumar/textvqa/content/detectron2/configs/COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml")
+        cfg.merge_from_file("/home/anand/projects/textvqa/content/detectron2/configs/COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml")
         cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  # set threshold for this model
         cfg.MODEL.WEIGHTS = "detectron2://COCO-Detection/faster_rcnn_R_101_FPN_3x/137851257/model_final_f6e8b1.pkl"
         predictor = DefaultPredictor(cfg)
