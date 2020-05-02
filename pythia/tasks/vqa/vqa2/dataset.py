@@ -169,7 +169,7 @@ class VQA2Dataset(BaseDataset):
             # Preprocess OCR tokens
 
             home = expanduser("~")
-            outputdir ='/home/anand/projects/textvqa/content/pythia/data/detectron_processed/'
+            outputdir ='/home/anandkumar/textvqa/content/pythia/data/detectron_processed/'
             imageid = sample_info['image_id']
             outputfile = outputdir + imageid + '.json'
             if os.path.isfile(outputfile):
@@ -264,11 +264,11 @@ class VQA2Dataset(BaseDataset):
 
     def _build_detection_model(self):
 
-        cfg.merge_from_file('/home/anand/projects/textvqa/content/model_data/detectron_model.yaml')
+        cfg.merge_from_file('/home/anandkumar/textvqa/content/model_data/detectron_model.yaml')
         cfg.freeze()
 
         model = build_detection_model(cfg)
-        checkpoint = torch.load('/home/anand/projects/textvqa/content/model_data/detectron_model.pth',
+        checkpoint = torch.load('/home/anandkumar/textvqa/content/model_data/detectron_model.pth',
                                 map_location=torch.device("cpu"))
 
         load_state_dict(model, checkpoint.pop("model"))

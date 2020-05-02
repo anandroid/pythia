@@ -94,10 +94,10 @@ def runForFiles():
     )
 
     # dir = '../../../pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
-    dir = '/home/anand/projects/textvqa/content/pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
+    dir = '/home/anandkumar/textvqa/content/pythia/data/imdb/textvqa_0.5/imdb_textvqa_train.npy'
 
 
-    outputdir ='/home/anand/projects/textvqa/content/pythia/data/detectron_processed/'
+    outputdir ='/home/anandkumar/textvqa/content/pythia/data/detectron_processed/'
 
     imageDataBaseDic = ImageDatabase(dir)
 
