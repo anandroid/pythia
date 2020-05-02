@@ -134,7 +134,8 @@ def runForFiles():
 
             print("Progress :" + str(i)+"/" + str(total) + " : "+image_id)
             img.close()
-        except:
+        except (RuntimeError, TypeError, NameError,OSError) as e:
+            print(e)
             print("")
 
     '''
