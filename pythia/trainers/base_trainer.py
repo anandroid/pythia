@@ -143,7 +143,7 @@ class BaseTrainer:
 
     def load_extras(self):
         self.checkpoint = Checkpoint(self)
-        self.checkpoint.restore()
+        #self.checkpoint.restore()
         self.meter = Meter()
 
         self.training_parameters = self.config.training_parameters
