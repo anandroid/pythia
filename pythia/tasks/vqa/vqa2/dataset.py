@@ -24,7 +24,7 @@ import numpy as np
 from os.path import expanduser
 import sys
 
-sys.path.append('/home/anand/projects/detectron2')
+sys.path.append('/home/anandkumar/detectron2')
 
 from detectron2.engine import DefaultPredictor
 from detectron2.config import get_cfg
@@ -350,7 +350,7 @@ class VQA2Dataset(BaseDataset):
 
     def get_detectron2_prediction(self,im):
         cfg = get_cfg()
-        cfg.merge_from_file("/home/anand/projects/detectron2/configs/COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml")
+        cfg.merge_from_file("/home/anandkumar/detectron2/configs/COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml")
         cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  # set threshold for this model
         cfg.MODEL.WEIGHTS = "detectron2://COCO-Detection/faster_rcnn_R_101_FPN_3x/137851257/model_final_f6e8b1.pkl"
         predictor = DefaultPredictor(cfg)
