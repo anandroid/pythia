@@ -104,7 +104,7 @@ training_parameters:
     verbose_dump: false
     # If resume is true, pythia will try to load automatically load
     # last of same parameters from save_dir
-    resume: false
+    resume: False
     # `resume_file` can be used to load a specific checkpoint from a file
     resume_file: null
     # Whether to pin memory in dataloader
