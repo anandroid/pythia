@@ -79,7 +79,7 @@ class VQA2Dataset(BaseDataset):
                 return_info=self._return_info,
             )
 
-            print("using image features")
+            #print("using image features")
 
     def _get_absolute_path(self, paths):
         if isinstance(paths, list):
@@ -191,7 +191,7 @@ class VQA2Dataset(BaseDataset):
             for ocr_token in generate_ngrams_range(sample_info["ocr_tokens"],(1,4)):
                 ocr_token_list.append(ocr_token)
 
-            print(ocr_token_list)
+            #print(ocr_token_list)
 
 
             sample_info["ocr_tokens"] = ocr_token_list
