@@ -10,7 +10,7 @@ This is an implementation for vision and language multimodal research developed 
 
 ### Model Implementation
 
-We have proposed few major improvements over Pythia, which is an implementation for the <a href="https://arxiv.org/pdf/1904.08920.pdf">LoRRA model<a>. The dynamic answering space is expanded by adding an Instance segment module. We have also replaced the existing OCR with spell correcting OCR and add the spatial features of the OCR. We have also implemented n-gram to the modified OCR.
+We have proposed few major improvements over Pythia, which is an implementation for the <a href="https://arxiv.org/pdf/1904.08920.pdf">LoRRA model<a>. The dynamic answering space is expanded by adding an Instance segmentation module. We have also replaced the existing OCR with spell correcting OCR and add the spatial features of the OCR. We have also implemented n-gram to the modified OCR.
 
 
 
